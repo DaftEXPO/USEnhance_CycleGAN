@@ -3,9 +3,9 @@ regist: True    # With or without registration network
 SAMpercept: True
 noise_level: 0  #  noise level
 port: 7778   #  port parameters
-save_root: './output/Cyc/C+R-EGEUNet+PatchGAN-SAM-SSIM-1/'
-image_save: '/data/yichu/experiments/us/USenhance/testset/outputs/C+R-UNet+PatchGAN-SAM-V3-L/'
-sam_path: '/data/yichu/lib/opensource/Medical-SAM-Adapter/checkpoint/sam/sam_vit_b_01ec64.pth'
+save_root: '../params/Cyc/EGEUNet+PatchGAN-SAM-SSIM/'
+image_save: '../outputs/EGEUNet+PatchGAN-SAM-SSIM/'
+sam_path: '../params/sam_vit_b_01ec64.pth'
 BtoA: True
 
 # lamda weight
@@ -19,9 +19,9 @@ Per_lambda: 9
 epoch: 0        # starting epoch
 n_epochs: 300       # How often do you want to display output images during training
 batchSize: 1               # size of the batches
-dataroot: '/data/yichu/experiments/us/USenhance/dataset_rearrange_v2/train'     # root directory of the dataset
-val_dataroot: '/data/yichu/experiments/us/USenhance/dataset_rearrange_v2/val'
-test_dataroot: '/data/yichu/experiments/us/USenhance/testset/low_quality_images'
+dataroot: '../dataset_rearrange_v2/train'     # root directory of the dataset
+val_dataroot: '../dataset_rearrange_v2/val'
+test_dataroot: '../dataset_rearrange_v2/testset/low_quality_images'
 lr: 0.00005            # initial learning rate
 decay_start_epoch: 30            # epoch to start linearly decaying the learning rate to 0
 load_size: 256
