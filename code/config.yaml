@@ -1,0 +1,34 @@
+name: CycleGan
+regist: True    # With or without registration network
+SAMpercept: True
+noise_level: 0  #  noise level
+port: 7778   #  port parameters
+save_root: './output/Cyc/C+R-EGEUNet+PatchGAN-SAM-SSIM-1/'
+image_save: '/data/yichu/experiments/us/USenhance/testset/outputs/C+R-UNet+PatchGAN-SAM-V3-L/'
+sam_path: '/data/yichu/lib/opensource/Medical-SAM-Adapter/checkpoint/sam/sam_vit_b_01ec64.pth'
+BtoA: True
+
+# lamda weight
+Adv_lamda: 8
+Cyc_lamda: 20
+Corr_lamda: 15
+Smooth_lamda: 50
+Per_lambda: 9
+
+
+epoch: 0        # starting epoch
+n_epochs: 300       # How often do you want to display output images during training
+batchSize: 1               # size of the batches
+dataroot: '/data/yichu/experiments/us/USenhance/dataset_rearrange_v2/train'     # root directory of the dataset
+val_dataroot: '/data/yichu/experiments/us/USenhance/dataset_rearrange_v2/val'
+test_dataroot: '/data/yichu/experiments/us/USenhance/testset/low_quality_images'
+lr: 0.00005            # initial learning rate
+decay_start_epoch: 30            # epoch to start linearly decaying the learning rate to 0
+load_size: 256
+size: 256                # size of the data crop
+no_flip: False
+d_step_freq: 4
+input_nc: 1         
+output_nc: 1                  
+cuda: True                
+n_cpu: 1
