@@ -1,4 +1,4 @@
-from .pipeline import *
+from pipeline import *
 
 import argparse
 import os

@@ -23,7 +23,7 @@ import numpy as np
 import cv2
 
 
-class Trainer():
+class Cyc_Trainer():
     def __init__(self, config):
         super().__init__()
         self.config = config
@@ -109,18 +109,29 @@ class Trainer():
 
         self.netG_A2B.load_state_dict(torch.load(self.config['save_root'] + 'netG_A2B.pth'))
         self.netG_A2B.eval()
+        
+        Tensor = torch.cuda.FloatTensor if self.config['cuda'] else torch.Tensor
+        self.input_A = Tensor(self.config['batchSize'], self.config['input_nc'], self.config['size'], self.config['size'])
+        if not os.path.isdir(self.config['image_save']):
+            os.makedirs(self.config['image_save'])
         with torch.no_grad():
-                for _, batch in enumerate(self.test_data):
-                    real_A = Variable(self.input_A.copy_(batch['A']))
+            for _, batch in enumerate(self.test_data):
+                real_A = Variable(self.input_A.copy_(batch['A']))
                     
-                    fake_B = self.netG_A2B(real_A)
-                    fake_B[real_A==-1] = -1
-                    save_path = os.path.join(self.config['image_save'], batch['case'][0])
-                    self.save_image_tensor2cv2(fake_B, save_path)
+                fake_B = self.netG_A2B(real_A)
+                fake_B[real_A==-1] = -1
+                save_path = os.path.join(self.config['image_save'], batch['case'][0])
+                self.save_image_tensor2cv2(fake_B, save_path)
 
 
     def train(self, ):
         level = self.config['noise_level']  # set noise level
+        
+        self.netG_A2B.load_state_dict(torch.load(self.config['save_root'] + 'netG_A2B.pth'))
+        self.netG_B2A.load_state_dict(torch.load(self.config['save_root'] + 'netG_B2A.pth'))
+        self.netD_A.load_state_dict(torch.load(self.config['save_root'] + 'netD_A.pth'))
+        self.netD_B.load_state_dict(torch.load(self.config['save_root'] + 'netD_B.pth'))
+        self.R_A.load_state_dict(torch.load(self.config['save_root'] + 'Regist.pth')) 
 
         transforms_1 = [transforms.ToTensor(),
                         transforms.Normalize((0.5,), (0.5,)),

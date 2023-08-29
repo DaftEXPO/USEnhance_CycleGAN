@@ -47,7 +47,6 @@ class group_aggregation_bridge(nn.Module):
         self.pre_project = nn.Conv2d(dim_xh, dim_xl, 1)
         G = 1 if use_mask else 0
         group_size = dim_xl // 2
-        print(dim_xh, dim_xl,group_size, G)
         self.g0 = nn.Sequential(
             LayerNorm(normalized_shape=group_size+G, data_format='channels_first'),
             nn.Conv2d(group_size + G, group_size + G, kernel_size=3, stride=1, 
