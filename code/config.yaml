@@ -3,8 +3,8 @@ regist: True    # With or without registration network
 SAMpercept: True
 noise_level: 0  #  noise level
 port: 7778   #  port parameters
-save_root: '../params/Cyc/EGEUNet+PatchGAN-SAM-SSIM/'
-image_save: '../outputs/EGEUNet+PatchGAN-SAM-SSIM/'
+save_root: '../params/'
+image_save: '../outputs/'
 sam_path: '../params/sam_vit_b_01ec64.pth'
 BtoA: True
 
